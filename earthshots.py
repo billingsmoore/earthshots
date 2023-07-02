@@ -20,4 +20,4 @@ for i in range(len(coords)//2):
     driver.get(url)
     time.sleep(10)
 
-    driver.save_screenshot('pics/' + coord.replace(',', '-') + '.png')
+    driver.save_screenshot('../earthshots-data/pics/' + coord.replace(',', '-') + '.png')
