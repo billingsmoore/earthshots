@@ -10,7 +10,7 @@ import csv
 # all but x and y must contain the letter as a suffix on the numerical argument
 
 # time to sleep to let google earth load before taking a screenshot
-sleep = 6
+sleep = 10
 
 # read in coordinates as list
 file = open("../earthshots-data/coordinates.csv", "r")
@@ -21,7 +21,7 @@ file.close()
 driver = webdriver.Chrome()
 
 # iterate over coordinates and take screenshots
-for i in range(1): # just test on one coordinate
+for i in range(len(coords)): 
     # get coordinate from list
     coord = coords[i][0].replace(' ', '')
     
