@@ -21,7 +21,7 @@ file.close()
 driver = webdriver.Chrome()
 
 # iterate over coordinates and take screenshots
-for i in range(26,len(coords)): 
+for i in range(1,len(coords)): 
     # get coordinate from list
     coord = coords[i][0].replace(' ', '')
     
