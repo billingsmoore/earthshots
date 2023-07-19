@@ -12,19 +12,8 @@ import csv
 # time to sleep to let google earth load before taking a screenshot
 sleep = 10
 
-# read in coordinates as list
-file = open("../earthshots-data/coordinates.csv", "r")
-coords = list(csv.reader(file, delimiter=","))
-file.close()
-
-# initialize driver
-driver = webdriver.Chrome()
-
-# iterate over coordinates and take screenshots
-for i in range(1,len(coords)): 
-    # get coordinate from list
-    coord = coords[i][0].replace(' ', '')
-    
+# function to take pics
+def take_pics(coord):   
     # screenshot of coordinate from straight above
     url = 'https://earth.google.com/web/@' + coord + ',60000d'
     driver.get(url)
@@ -43,3 +32,32 @@ for i in range(1,len(coords)):
             time.sleep(sleep)
 
             driver.save_screenshot('../earthshots-data/pics/' + coord.replace(',', '-') + str(j) + '-' + str(k) + '.png')
+
+# read in coordinates as list
+file = open("../earthshots-data/coordinates.csv", "r")
+coords = list(csv.reader(file, delimiter=","))
+file.close()
+
+# initialize driver
+driver = webdriver.Chrome()
+
+# iterate over coordinates and take screenshots
+for i in range(1,len(coords)): 
+    # get coordinate from list
+    coord = coords[i][0].split()
+    x_coord = float(coord[0].replace(' ', ''))
+    y_coord = float(coord[1])
+
+    #add to coordinate to get surroundings
+    displacement = 0
+
+    west = str(x_coord+displacement) + ',' + str(y_coord)
+    east = str(x_coord-displacement) + ',' + str(y_coord)
+    north = str(x_coord) + ',' + str(y_coord+displacement)
+    south = str(x_coord) + ',' + str(y_coord+displacement)
+
+    surroundings = [west, east, north, south]
+
+    # take pics
+    for location in surroundings:
+        take_pics(location)
