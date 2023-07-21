@@ -42,7 +42,7 @@ file.close()
 driver = webdriver.Chrome()
 
 # iterate over coordinates and take screenshots
-for i in range(1,len(coords)): 
+for i in range(0,len(coords)): 
     # get coordinate from list
     coord = coords[i][0].split()
     x_coord = float(coord[0].replace(',', ''))
