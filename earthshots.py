@@ -45,11 +45,11 @@ driver = webdriver.Chrome()
 for i in range(1,len(coords)): 
     # get coordinate from list
     coord = coords[i][0].split()
-    x_coord = float(coord[0].replace(' ', ''))
+    x_coord = float(coord[0].replace(',', ''))
     y_coord = float(coord[1])
 
     #add to coordinate to get surroundings
-    displacement = 0
+    displacement = .2
 
     west = str(x_coord+displacement) + ',' + str(y_coord)
     east = str(x_coord-displacement) + ',' + str(y_coord)
@@ -61,3 +61,5 @@ for i in range(1,len(coords)):
     # take pics
     for location in surroundings:
         take_pics(location)
+
+    print(str(i) + '/' + str(len(coords)) + ' coordinates finished')
