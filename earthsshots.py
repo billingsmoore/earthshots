@@ -54,6 +54,4 @@ for i in range(total):
         driver = webdriver.Chrome()
         
         
-
-
 print('Done!')
