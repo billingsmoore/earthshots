@@ -44,6 +44,7 @@ for i in range(total):
 
                 newrl = this_url + ',' + str(k) + 'r'
                 driver.get(newrl)
+                driver.fullscreen_window()
                 time.sleep(sleep)
 
                 driver.save_screenshot('../earthshots-data/pics/' + coord.replace(',', '-') + str(j) + '-' + str(k) + '.png')
