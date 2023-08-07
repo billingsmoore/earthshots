@@ -60,6 +60,9 @@ for i in range(0,len(coords)):
 
     # take pics
     for location in surroundings:
-        take_pics(location)
+        try:
+            take_pics(location)
+        except:
+            print('Surrounding ' + str(i) + ' skipped due to an error.')
 
     print(str(i) + '/' + str(len(coords)) + ' coordinates finished')
