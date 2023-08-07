@@ -24,28 +24,36 @@ total = len(coords)
 
 # iterate over coordinates and take screenshots
 for i in range(total): 
-    # get coordinate from list
-    coord = coords[i][0].replace(' ', '')
-    
-    # screenshot of coordinate from straight above
-    url = 'https://earth.google.com/web/@' + coord + ',60000d'
-    driver.get(url)
-    time.sleep(sleep)
+    try:
+        # get coordinate from list
+        coord = coords[i][0].replace(' ', '')
+        
+        # screenshot of coordinate from straight above
+        url = 'https://earth.google.com/web/@' + coord + ',60000d'
+        driver.get(url)
+        driver.fullscreen_window()
+        time.sleep(sleep)
 
-    # rotate t values
-    for j in range(0, 61, 15):
+        # rotate t values
+        for j in range(0, 61, 15):
 
-        this_url = url +',' + str(j) + 't'
+            this_url = url +',' + str(j) + 't'
 
-        # rotate r values
-        for k in range(0, 271, 90):
+            # rotate r values
+            for k in range(0, 271, 90):
 
-            newrl = this_url + ',' + str(k) + 'r'
-            driver.get(newrl)
-            time.sleep(sleep)
+                newrl = this_url + ',' + str(k) + 'r'
+                driver.get(newrl)
+                time.sleep(sleep)
 
-            driver.save_screenshot('../earthshots-data/pics/' + coord.replace(',', '-') + str(j) + '-' + str(k) + '.png')
+                driver.save_screenshot('../earthshots-data/pics/' + coord.replace(',', '-') + str(j) + '-' + str(k) + '.png')
 
-    print(str(i) + '/' + str(total) + ' coordinates done')
+        print(str(i) + '/' + str(total) + ' coordinates done')
+    except:
+        print('Coordinate ' + str(i) + ' skipped due to an error')
+        driver = webdriver.Chrome()
+        
+        
+
 
 print('Done!')
