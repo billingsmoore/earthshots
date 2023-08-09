@@ -17,6 +17,9 @@ file = open("../earthshots-data/2nd Russian Airbase Coordinates - Sheet1.csv", "
 coords = list(csv.reader(file, delimiter=","))
 file.close()
 
+successes = 0
+failures = 0
+
 # initialize driver
 driver = webdriver.Chrome()
 
@@ -48,11 +51,14 @@ for i in range(total):
                 time.sleep(sleep)
 
                 driver.save_screenshot('../earthshots-data/pics/' + coord.replace(',', '-') + str(j) + '-' + str(k) + '.png')
-
+        successes += 1
         print(str(i) + '/' + str(total) + ' coordinates done')
     except:
         print('Coordinate ' + str(i) + ' skipped due to an error')
+        failures += 1
         driver = webdriver.Chrome()
         
         
 print('Done!')
+print(str(successes) + ' successful')
+print(str(failures) + ' failed')
