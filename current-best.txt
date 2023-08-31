@@ -1,0 +1,3 @@
+effnetV2S-2.3 is the current best performing model
+over 99% accuracy and precision on validation data
+~95% accuracy and precision on test data
